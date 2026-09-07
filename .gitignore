@@ -1,0 +1,10 @@
+contracts/cache/
+contracts/out/
+contracts/broadcast/
+.tools/
+.env
+.env.*
+!.env.example
+node_modules/
+.DS_Store
+Thumbs.db
