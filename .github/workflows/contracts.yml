@@ -1,0 +1,29 @@
+name: Contract tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: contracts
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: v1.8.1
+      - name: Check formatting
+        run: forge fmt --check
+      - name: Compile
+        run: forge build
+      - name: Run all contract tests
+        run: forge test -vvv
